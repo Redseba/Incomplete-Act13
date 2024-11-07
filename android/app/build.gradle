@@ -1,0 +1,52 @@
+plugins {
+    id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    id "org.jetbrains.kotlin.android" // Required if you're using Kotlin
+    id "dev.flutter.flutter-gradle-plugin" // Apply Flutter Gradle plugin
+}
+
+android {
+    namespace = "com.MAD.act13v2"  // Your app's namespace
+    compileSdk = 34  // Set the compile SDK version
+    ndkVersion = flutter.ndkVersion  // NDK version from Flutter configuration
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.MAD.act13v2"  // Set your unique application ID
+        minSdk = 23  // Set the minimum SDK version for your app
+        targetSdk = 34  // Set the target SDK version for your app
+        versionCode = 1  // App version code
+        versionName = "1.0"  // App version name
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Use debug keys for release for now (update with your signing config for production)
+        }
+    }
+}
+
+flutter {
+    source = "../.."  // Path to the Flutter SDK (relative to the app)
+}
+
+dependencies {
+    // Firebase SDK dependencies (using Firebase BOM for version management)
+    implementation platform('com.google.firebase:firebase-bom:33.5.1')  // Firebase BOM (Bill of Materials)
+    implementation 'com.google.firebase:firebase-analytics'  // Firebase Analytics
+    implementation 'com.google.firebase:firebase-auth'  // Firebase Authentication
+    implementation 'com.google.firebase:firebase-firestore'  // Firebase Firestore (if using Firestore)
+    
+    // Kotlin standard library (only needed if you're using Kotlin)
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+}
